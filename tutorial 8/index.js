@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-PORT = 3000;
+PORT = 3001;
 // const bodyParser = require('body-parser');
 
 // app.use(bodyParser.urlencoded({ Extended: false}));
 // app.use(bodyParser.json());
 
 app.use(express.urlencoded({ Extended: false}));
-// app.use(express.json());
+app.use(express.json());
 
 app.get('/register', (req,res) => {
     res.sendFile(__dirname + "/views/register.html");
@@ -15,8 +15,8 @@ app.get('/register', (req,res) => {
 
 
 app.post("/register", (req, res) => {
-    const fullName = req.body.fullName;
-    const age = req.body.age;
+    const {fullName, age} = req.body;
+    // const age = req.body.age;
     res.send(`<h2> Your name is ${fullName} and Your age is ${age}`)
 });
 
